@@ -1,0 +1,44 @@
+# agents/config/capabilities.yaml
+capabilities:
+  information_retrieval:
+    name: information_retrieval
+    description: Can search for and synthesize information from various sources
+    function_types: 
+      - search
+      - web
+    parameters:
+      search_query:
+        type: string
+        description: Search terms to look for
+        required: true
+      max_results:
+        type: integer
+        description: Maximum number of results to return
+        default: 5
+
+  code_execution:
+    name: code_execution
+    description: Can execute and analyze Python code safely
+    function_types:
+      - code
+    parameters:
+      code:
+        type: string
+        description: Code to execute
+        required: true
+      timeout:
+        type: integer
+        description: Maximum execution time
+        default: 30
+
+agents:
+  ChatAgent:
+    description: General-purpose chat agent with search and code capabilities
+    capabilities:
+      - information_retrieval
+      - code_execution
+
+  SearchAgent:
+    description: Specialized search agent
+    capabilities:
+      - information_retrieval

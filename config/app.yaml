@@ -1,0 +1,35 @@
+# config/app.yaml
+app:
+  name: AI Chat Assistant
+  version: "1.0.0"
+  description: Interactive chat interface for AI agents
+
+# Default agent configuration
+default_agent: ChatAgent
+
+# Chat interface settings
+chat:
+  prompt: "User: "
+  max_history: 50
+  commands:
+    exit: End the conversation
+    help: Show available commands
+    capabilities: List agent capabilities
+    clear: Clear conversation history
+
+# Display settings
+display:
+  show_capabilities_on_start: true
+  show_thinking_process: true
+  show_tool_results: false  # Set to true to see raw tool outputs
+
+# Logging settings
+logging:
+  level: INFO
+  show_timestamps: true
+  log_file: logs/chat.log
+
+# Rate limiting settings
+rate_limits:
+  max_requests_per_minute: 60
+  cooldown_period: 1  # seconds

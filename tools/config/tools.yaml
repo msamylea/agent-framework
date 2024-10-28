@@ -1,0 +1,95 @@
+# tools/config/tools.yaml
+tools:
+  ddg_search:
+    function: tools.search_functions.ddg_search
+    function_type: search
+    description: Search DuckDuckGo and return top results
+    parameters:
+      topic:
+        type: string
+        description: Search query string
+        required: true
+      max_results:
+        type: integer
+        description: Maximum number of results to return
+        default: 10
+    returns: string
+    requires:
+      - duckduckgo_search
+
+  get_webpage:
+    function: tools.web_functions.get_web_page
+    function_type: web
+    description: Fetch and parse webpage content
+    parameters:
+      url:
+        type: string
+        description: URL to fetch
+        required: true
+      timeout:
+        type: integer
+        description: Request timeout in seconds
+        default: 30
+    returns: string
+    requires:
+      - requests
+      - beautifulsoup4
+
+  execute_python_code:
+    function: tools.code_functions.execute_python_code
+    function_type: code
+    description: Execute Python code safely
+    parameters:
+      code:
+        type: string
+        description: Python code to execute
+        required: true
+      timeout:
+        type: integer
+        description: Maximum execution time
+        default: 30
+    returns: string
+    validation:
+      allowed_modules:
+        - requests
+        - json
+        - datetime
+        - math
+        - statistics
+        - random
+        - re
+        - csv
+        - pandas
+        - numpy
+        - matplotlib
+        - seaborn
+        - sklearn
+        - tensorflow
+        - keras
+        - torch
+        - nltk
+        - spacy
+        - gensim
+        - bs4
+        - lxml
+    blocked_modules:
+        - os
+        - sys
+        - subprocess
+        - shutil
+  save_file:
+    function: tools.file_functions.save_file
+    function_type: file
+    description: Save content to a file
+    parameters:
+      content:
+        type: string
+        description: Content to save
+        required: true
+      file_path:
+        type: string
+        description: Path to save the file
+        required: true
+    returns: string
+    requires:
+      - pathlib
